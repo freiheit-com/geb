@@ -48,6 +48,10 @@ allprojects { project ->
 
         groovyDependency = "org.codehaus.groovy:groovy-all:$groovyVersion"
 
+        slf4jApiDependency = 'org.slf4j:slf4j-api:1.7.+'
+        slf4jSimpleDependency = 'org.slf4j:slf4j-simple:1.7.13'
+        slf4jNopDependency = 'org.slf4j:slf4j-nop:1.7.13'
+
         repositories {
             mavenCentral()
             maven {
@@ -94,6 +98,8 @@ subprojects {
 
         dependencies {
             compile groovyDependency
+            compile slf4jApiDependency
+            testCompile slf4jNopDependency
             codenarc 'org.codenarc:CodeNarc:0.22'
         }
 
