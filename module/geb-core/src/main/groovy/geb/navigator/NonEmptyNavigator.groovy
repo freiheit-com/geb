@@ -159,7 +159,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator next() {
-        log.info('*** next()', this)
+        log.info('*** next()', this) // TODO
         navigatorFor collectElements {
             it.findElement By.xpath("following-sibling::*")
         }
@@ -183,7 +183,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator nextAll() {
-        log.info('*** nextAll()', this)
+        log.info('*** nextAll()', this) // TODO
         navigatorFor collectFollowingSiblings()
     }
 
@@ -221,7 +221,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator previous() {
-        log.info('*** previous()', this)
+        log.info('*** previous()', this) // TODO
         navigatorFor collectPreviousSiblings {
             it ? it.last() : EMPTY_LIST
         }
@@ -245,7 +245,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator prevAll() {
-        log.info('*** prevAll()', this)
+        log.info('*** prevAll()', this) // TODO
         navigatorFor collectPreviousSiblings()
     }
 
@@ -283,7 +283,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator parent() {
-        log.info('*** parent()', this)
+        log.info('*** parent()', this) // TODO
         navigatorFor collectElements {
             it.findElement By.xpath("parent::*")
         }
@@ -305,7 +305,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator parents() {
-        log.info('*** parents()', this)
+        log.info('*** parents()', this) // TODO
         navigatorFor collectParents {
             it.reverse()
         }
