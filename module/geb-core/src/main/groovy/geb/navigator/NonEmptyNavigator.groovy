@@ -30,9 +30,9 @@ import org.openqa.selenium.WebElement
 
 import java.util.regex.Pattern
 
-import static java.util.Collections.EMPTY_LIST
-
 import groovy.util.logging.Slf4j
+
+import static java.util.Collections.EMPTY_LIST
 
 @Slf4j
 class NonEmptyNavigator extends AbstractNavigator {
