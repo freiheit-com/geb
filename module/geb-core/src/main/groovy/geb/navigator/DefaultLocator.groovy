@@ -31,7 +31,7 @@ class DefaultLocator implements Locator {
 
     @Override
     Navigator find(String selector) {
-        log.info("*** find(${selector.toString()})", this)
+        log.info("find(${selector.toString()})", this)
         find(By.cssSelector(selector))
     }
 
@@ -42,13 +42,13 @@ class DefaultLocator implements Locator {
 
     @Override
     Navigator find(String selector, int index) {
-        log.info("*** find(${selector.toString()},${index}", this)
+        log.info("find(${selector.toString()},${index}", this)
         find(selector)[index]
     }
 
     @Override
     Navigator find(String selector, Range<Integer> range) {
-        log.info("*** find(${selector.toString()},${range})", this)
+        log.info("find(${selector.toString()},${range})", this)
         find(selector)[range]
     }
 
@@ -69,7 +69,7 @@ class DefaultLocator implements Locator {
 
     @Override
     Navigator find(Map<String, Object> attributes, By bySelector) {
-        log.info("*** find(${attributes},${bySelector})", this)
+        log.info("find(${attributes},${bySelector})", this)
         find(bySelector).filter(attributes)
     }
 
@@ -80,19 +80,19 @@ class DefaultLocator implements Locator {
 
     @Override
     Navigator find(Map<String, Object> attributes, By bySelector, int index) {
-        log.info("*** find(${attributes},${bySelector},${index})", this)
+        log.info("find(${attributes},${bySelector},${index})", this)
         find(attributes, bySelector)[index]
     }
 
     @Override
     Navigator $(Map<String, Object> attributes, By bySelector, Range<Integer> range) {
-        log.info("*** find(${attributes},${bySelector},${range})", this)
+        log.info("find(${attributes},${bySelector},${range})", this)
         find(attributes, bySelector, range)
     }
 
     @Override
     Navigator find(Map<String, Object> attributes, By bySelector, Range<Integer> range) {
-        log.info("*** find(${attributes},${bySelector},${range})", this)
+        log.info("find(${attributes},${bySelector},${range})", this)
         find(attributes, bySelector)[range]
     }
 
@@ -108,7 +108,7 @@ class DefaultLocator implements Locator {
 
     @Override
     Navigator find(By bySelector, int index) {
-        log.info("*** find(${bySelector},${index})", this)
+        log.info("find(${bySelector},${index})", this)
         find(bySelector)[index]
     }
 
@@ -119,7 +119,7 @@ class DefaultLocator implements Locator {
 
     @Override
     Navigator find(By bySelector, Range<Integer> range) {
-        log.info("*** find(${bySelector},${range})", this)
+        log.info("find(${bySelector},${range})", this)
         find(bySelector)[range]
     }
 
@@ -130,13 +130,13 @@ class DefaultLocator implements Locator {
 
     @Override
     Navigator find(Map<String, Object> attributes, int index) {
-        log.info("*** find(${attributes},${index})", this)
+        log.info("find(${attributes},${index})", this)
         find(attributes)[index]
     }
 
     @Override
     Navigator find(Map<String, Object> attributes, Range<Integer> range) {
-        log.info("*** find(${attributes},${range})", this)
+        log.info("find(${attributes},${range})", this)
         find(attributes)[range]
     }
 
@@ -157,13 +157,13 @@ class DefaultLocator implements Locator {
 
     @Override
     Navigator find(Map<String, Object> attributes, String selector, int index) {
-        log.info("*** find(${attributes},${selector.toString()},${index})", this)
+        log.info("find(${attributes},${selector.toString()},${index})", this)
         find(attributes, selector)[index]
     }
 
     @Override
     Navigator find(Map<String, Object> attributes, String selector, Range<Integer> range) {
-        log.info("*** find(${attributes},${selector.toString()},${range})", this)
+        log.info("find(${attributes},${selector.toString()},${range})", this)
         find(attributes, selector)[range]
     }
 
@@ -179,7 +179,7 @@ class DefaultLocator implements Locator {
 
     @Override
     Navigator find(Map<String, Object> attributes) {
-        log.info("*** find(${attributes})", this)
+        log.info("find(${attributes})", this)
         find attributes, MATCH_ALL_SELECTOR
     }
 }

@@ -59,7 +59,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator filter(String selector) {
-        log.info("*** filter(${selector.toString()})", contextElements)
+        log.info("filter(${selector.toString()})", contextElements)
         navigatorFor contextElements.findAll { element ->
             CssSelector.matches(element, selector)
         }
@@ -67,13 +67,13 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator filter(Map<String, Object> predicates) {
-        log.info("*** filter(${predicates})", contextElements)
+        log.info("filter(${predicates})", contextElements)
         navigatorFor contextElements.findAll { matches(it, predicates) }
     }
 
     @Override
     Navigator not(String selector) {
-        log.info("*** not(${selector.toString()})", contextElements)
+        log.info("not(${selector.toString()})", contextElements)
         navigatorFor contextElements.findAll { element ->
             !CssSelector.matches(element, selector)
         }
@@ -81,7 +81,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator not(Map<String, Object> predicates, String selector) {
-        log.info("*** not(${predicates},${selector.toString()})", contextElements)
+        log.info("not(${predicates},${selector.toString()})", contextElements)
         navigatorFor contextElements.findAll { element ->
             !(CssSelector.matches(element, selector) && matches(element, predicates))
         }
@@ -89,7 +89,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator not(Map<String, Object> predicates) {
-        log.info("*** not(${predicates})", contextElements)
+        log.info("not(${predicates})", contextElements)
         navigatorFor contextElements.findAll { element ->
             !matches(element, predicates)
         }
@@ -97,25 +97,25 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator getAt(int index) {
-        log.info("*** getAt(${index})", this)
+        log.info("getAt(${index})", this)
         navigatorFor(Collections.singleton(getElement(index)))
     }
 
     @Override
     Navigator getAt(Range range) {
-        log.info("*** getAt(${range})", this)
+        log.info("getAt(${range})", this)
         navigatorFor getElements(range)
     }
 
     @SuppressWarnings("UnusedMethodParameter")
     Navigator getAt(EmptyRange range) {
-        log.info("*** getAt(${range})", this)
+        log.info("getAt(${range})", this)
         new EmptyNavigator(browser)
     }
 
     @Override
     Navigator getAt(Collection indexes) {
-        log.info("*** getAt(${indexes})", this)
+        log.info("getAt(${indexes})", this)
         navigatorFor getElements(indexes)
     }
 
@@ -146,7 +146,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator remove(int index) {
-        log.info("*** remove(${index})", this)
+        log.info("remove(${index})", this)
         int size = size()
         if (!(index in -size..<size)) {
             this
@@ -159,7 +159,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator next() {
-        log.info('*** next()', this) // TODO
+        log.info('next()', this) // TODO
         navigatorFor collectElements {
             it.findElement By.xpath("following-sibling::*")
         }
@@ -167,7 +167,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator next(Map<String, Object> attributes) {
-        log.info("*** next(${attributes})",collectFollowingSiblings)
+        log.info("next(${attributes})",collectFollowingSiblings)
         navigatorFor collectFollowingSiblings {
             it.find { matches(it, attributes) }
         }
@@ -175,7 +175,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator next(Map<String, Object> attributes = [:], String selector) {
-        log.info("*** next(${attributes},${selector})", collectFollowingSiblings)
+        log.info("next(${attributes},${selector})", collectFollowingSiblings)
         navigatorFor collectFollowingSiblings {
             it.find { CssSelector.matches(it, selector) && matches(it, attributes) }
         }
@@ -183,13 +183,13 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator nextAll() {
-        log.info('*** nextAll()', this) // TODO
+        log.info('nextAll()', this) // TODO
         navigatorFor collectFollowingSiblings()
     }
 
     @Override
     Navigator nextAll(Map<String, Object> attributes) {
-        log.info("*** nextAll(${attributes})", collectFollowingSiblings)
+        log.info("nextAll(${attributes})", collectFollowingSiblings)
         navigatorFor collectFollowingSiblings {
             it.findAll { matches(it, attributes) }
         }
@@ -197,7 +197,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator nextAll(Map<String, Object> attributes = [:], String selector) {
-        log.info("*** nextAll(${attributes},${selector})", collectFollowingSiblings)
+        log.info("nextAll(${attributes},${selector})", collectFollowingSiblings)
         navigatorFor collectFollowingSiblings {
             it.findAll { CssSelector.matches(it, selector) && matches(it, attributes) }
         }
@@ -205,7 +205,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator nextUntil(Map<String, Object> attributes) {
-        log.info("*** nextUntil(${attributes})", collectFollowingSiblings)
+        log.info("nextUntil(${attributes})", collectFollowingSiblings)
         navigatorFor collectFollowingSiblings {
             collectUntil(it, attributes)
         }
@@ -213,7 +213,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator nextUntil(Map<String, Object> attributes = [:], String selector) {
-        log.info("*** nextUntil(${attributes},${selector})", collectFollowingSiblings)
+        log.info("nextUntil(${attributes},${selector})", collectFollowingSiblings)
         navigatorFor collectFollowingSiblings {
             collectUntil(it, attributes, selector)
         }
@@ -221,7 +221,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator previous() {
-        log.info('*** previous()', this) // TODO
+        log.info('previous()', this) // TODO
         navigatorFor collectPreviousSiblings {
             it ? it.last() : EMPTY_LIST
         }
@@ -229,7 +229,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator previous(Map<String, Object> attributes) {
-        log.info("*** previous(${attributes})", collectPreviousSiblings)
+        log.info("previous(${attributes})", collectPreviousSiblings)
         navigatorFor collectPreviousSiblings {
             it.reverse().find { matches(it, attributes) }
         }
@@ -237,7 +237,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator previous(Map<String, Object> attributes = [:], String selector) {
-        log.info("*** previous(${attributes},${selector})", collectPreviousSiblings)
+        log.info("previous(${attributes},${selector})", collectPreviousSiblings)
         navigatorFor collectPreviousSiblings {
             it.reverse().find { CssSelector.matches(it, selector) && matches(it, attributes) }
         }
@@ -245,13 +245,13 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator prevAll() {
-        log.info('*** prevAll()', this) // TODO
+        log.info('prevAll()', this) // TODO
         navigatorFor collectPreviousSiblings()
     }
 
     @Override
     Navigator prevAll(Map<String, Object> attributes) {
-        log.info("*** prevAll(${attributes})", collectPreviousSiblings)
+        log.info("prevAll(${attributes})", collectPreviousSiblings)
         navigatorFor collectPreviousSiblings {
             it.reverse().findAll { matches(it, attributes) }
         }
@@ -259,7 +259,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator prevAll(Map<String, Object> attributes = [:], String selector) {
-        log.info("*** prevAll(${attributes},${selector})", collectPreviousSiblings)
+        log.info("prevAll(${attributes},${selector})", collectPreviousSiblings)
         navigatorFor collectPreviousSiblings {
             it.reverse().findAll { CssSelector.matches(it, selector) && matches(it, attributes) }
         }
@@ -267,7 +267,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator prevUntil(Map<String, Object> attributes) {
-        log.info("*** prevUntil(${attributes})", collectPreviousSiblings)
+        log.info("prevUntil(${attributes})", collectPreviousSiblings)
         navigatorFor collectPreviousSiblings {
             collectUntil(it.reverse(), attributes)
         }
@@ -275,7 +275,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator prevUntil(Map<String, Object> attributes = [:], String selector) {
-        log.info("*** prevUntil(${attributes},${selector})", collectPreviousSiblings)
+        log.info("prevUntil(${attributes},${selector})", collectPreviousSiblings)
         navigatorFor collectPreviousSiblings {
             collectUntil(it.reverse(), attributes, selector)
         }
@@ -283,7 +283,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator parent() {
-        log.info('*** parent()', this) // TODO
+        log.info('parent()', this) // TODO
         navigatorFor collectElements {
             it.findElement By.xpath("parent::*")
         }
@@ -292,20 +292,20 @@ class NonEmptyNavigator extends AbstractNavigator {
     @Override
     Navigator parent(Map<String, Object> attributes) {
         Navigator parent = parent()
-        log.info("*** parent(${attributes})", parent)
+        log.info("parent(${attributes})", parent)
         parent.filter(attributes)
     }
 
     @Override
     Navigator parent(Map<String, Object> attributes = [:], String selector) {
         Navigator parent = parent()
-        log.info("*** parent(${attributes},${selector})", parent)
+        log.info("parent(${attributes},${selector})", parent)
         parent.filter(attributes, selector)
     }
 
     @Override
     Navigator parents() {
-        log.info('*** parents()', this) // TODO
+        log.info('parents()', this) // TODO
         navigatorFor collectParents {
             it.reverse()
         }
@@ -313,7 +313,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator parents(Map<String, Object> attributes) {
-        log.info("*** parents(${attributes})", collectParents)
+        log.info("parents(${attributes})", collectParents)
         navigatorFor collectParents {
             it.reverse().findAll { matches(it, attributes) }
         }
@@ -321,7 +321,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator parents(Map<String, Object> attributes = [:], String selector) {
-        log.info("*** parents(${attributes},${selector})", collectParents)
+        log.info("parents(${attributes},${selector})", collectParents)
         navigatorFor collectParents {
             it.reverse().findAll { CssSelector.matches(it, selector) && matches(it, attributes) }
         }
@@ -329,7 +329,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator parentsUntil(Map<String, Object> attributes) {
-        log.info("*** parentsUntil(${attributes})", collectParents)
+        log.info("parentsUntil(${attributes})", collectParents)
         navigatorFor collectParents {
             collectUntil(it.reverse(), attributes)
         }
@@ -337,7 +337,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator parentsUntil(Map<String, Object> attributes = [:], String selector) {
-        log.info("*** parentsUntil(${attributes},${selector})", collectParents)
+        log.info("parentsUntil(${attributes},${selector})", collectParents)
         navigatorFor collectParents {
             collectUntil(it.reverse(), attributes, selector)
         }
@@ -345,7 +345,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator closest(Map<String, Object> attributes) {
-        log.info("*** closest(${attributes})", collectParents)
+        log.info("closest(${attributes})", collectParents)
         navigatorFor collectParents {
             it.reverse().find { matches(it, attributes) }
         }
@@ -353,7 +353,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator closest(Map<String, Object> attributes = [:], String selector) {
-        log.info("*** closest(${attributes},${selector})", collectParents)
+        log.info("closest(${attributes},${selector})", collectParents)
         navigatorFor collectParents {
             it.reverse().find { CssSelector.matches(it, selector) && matches(it, attributes) }
         }
@@ -362,42 +362,42 @@ class NonEmptyNavigator extends AbstractNavigator {
     @Override
     Navigator children() {
         Collection<WebElement> collectChildren = collectChildren()
-        log.info('*** children()', collectChildren)
+        log.info('children()', collectChildren)
         navigatorFor collectChildren
     }
 
     @Override
     Navigator children(Map<String, Object> attributes) {
         Navigator children = children()
-        log.info("*** children(${attributes})", children)
+        log.info("children(${attributes})", children)
         children.filter(attributes)
     }
 
     @Override
     Navigator children(Map<String, Object> attributes = [:], String selector) {
         Navigator children = children()
-        log.info("*** children(${attributes},${selector})", children)
+        log.info("children(${attributes},${selector})", children)
         children.filter(attributes, selector)
     }
 
     @Override
     Navigator siblings() {
         Collection<WebElement> collectSiblings = collectSiblings()
-        log.info('*** siblings()', collectSiblings)
+        log.info('siblings()', collectSiblings)
         navigatorFor collectSiblings
     }
 
     @Override
     Navigator siblings(Map<String, Object> attributes) {
         Navigator siblings = siblings()
-        log.info("*** siblings(${attributes})", siblings)
+        log.info("siblings(${attributes})", siblings)
         siblings.filter(attributes)
     }
 
     @Override
     Navigator siblings(Map<String, Object> attributes = [:], String selector) {
         Navigator siblings = siblings()
-        log.info("*** siblings(${attributes},${selector})", siblings)
+        log.info("siblings(${attributes},${selector})", siblings)
         siblings.filter(attributes, selector)
     }
 
@@ -409,14 +409,14 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     boolean hasClass(String valueToContain) {
-        log.info("*** hasClass(${valueToContain})", contextElements)
+        log.info("hasClass(${valueToContain})", contextElements)
         ensureContainsSingleElement("hasClass", String)
         valueToContain in classes()
     }
 
     @Override
     boolean is(String tag) {
-        log.info("*** is(${tag})", contextElements)
+        log.info("is(${tag})", contextElements)
         ensureContainsSingleElement("is", String)
         tag.equalsIgnoreCase(firstElement().tagName)
     }
@@ -424,14 +424,14 @@ class NonEmptyNavigator extends AbstractNavigator {
     @Override
     boolean isDisplayed() {
         WebElement first = firstElement()
-        log.info('*** isDisplayed()', first)
+        log.info('isDisplayed()', first)
         ensureContainsSingleElement("isDisplayed")
         first.displayed
     }
 
     @Override
     boolean isDisabled() {
-        log.info('*** isDisabled()', this)
+        log.info('isDisabled()', this)
         ensureContainsSingleElement("isDisabled")
         ensureTagIn(['button', 'input', 'option', 'select', 'textarea'], 'disabled')
 
@@ -442,14 +442,14 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     boolean isEnabled() {
-        log.info('*** isEnabled()', this)
+        log.info('isEnabled()', this)
         ensureContainsSingleElement("isEnabled")
         !disabled
     }
 
     @Override
     boolean isReadOnly() {
-        log.info('*** isReadOnly()', this)
+        log.info('isReadOnly()', this)
         ensureContainsSingleElement("isReadOnly")
         ensureTagIn(['input', 'textarea'], 'readonly')
 
@@ -459,7 +459,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     boolean isEditable() {
-        log.info('*** isEditable()', this)
+        log.info('isEditable()', this)
         ensureContainsSingleElement("isEditable")
         !readOnly
     }
@@ -467,7 +467,7 @@ class NonEmptyNavigator extends AbstractNavigator {
     @Override
     String tag() {
         WebElement first = firstElement()
-        log.info('*** tag()', first)
+        log.info('tag()', first)
         ensureContainsSingleElement("tag")
         first.tagName
     }
@@ -475,7 +475,7 @@ class NonEmptyNavigator extends AbstractNavigator {
     @Override
     String text() {
         WebElement first = firstElement()
-        log.info('*** text()', first)
+        log.info('text()', first)
         ensureContainsSingleElement("text")
         first.text
         firstElement().text
@@ -484,7 +484,7 @@ class NonEmptyNavigator extends AbstractNavigator {
     @Override
     String getAttribute(String name) {
         WebElement first = firstElement()
-        log.info("*** text(${name.toString()})", first)
+        log.info("text(${name.toString()})", first)
         ensureContainsSingleElement("getAttribute", String)
         def attribute = first.getAttribute(name)
         if (attribute == 'false' && name in BOOLEAN_ATTRIBUTES) {
@@ -496,7 +496,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     List<String> classes() {
-        log.info('*** classes()')
+        log.info('classes()')
         ensureContainsSingleElement("classes")
         contextElements.head().getAttribute("class")?.tokenize()?.unique()?.sort() ?: EMPTY_LIST
     }
@@ -504,21 +504,21 @@ class NonEmptyNavigator extends AbstractNavigator {
     @Override
     def value() {
         WebElement head = contextElements.head()
-        log.info('*** value()', head)
+        log.info('value()', head)
         ensureContainsSingleElement("value")
         getInputValue(head)
     }
 
     @Override
     Navigator value(value) {
-        log.info("*** value(${value})", contextElements)
+        log.info("value(${value})", contextElements)
         setInputValues(contextElements, value)
         this
     }
 
     @Override
     Navigator leftShift(value) {
-        log.info("*** leftShift(${value})", contextElements)
+        log.info("leftShift(${value})", contextElements)
         contextElements.each {
             it.sendKeys value
         }
@@ -528,7 +528,7 @@ class NonEmptyNavigator extends AbstractNavigator {
     @Override
     Navigator click() {
         WebElement first = contextElements.first()
-        log.info("*** click()", first)
+        log.info("click()", first)
         ensureContainsSingleElement("click")
         first.click()
         this
@@ -536,13 +536,13 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator click(Class<? extends Page> pageClass, Wait wait = null) {
-        log.info("*** click(${pageClass},${wait})", this)
+        log.info("click(${pageClass},${wait})", this)
         click(browser.createPage(pageClass), wait)
     }
 
     @Override
     Navigator click(Page pageInstance, Wait wait = null) {
-        log.info("*** click(${pageInstance},${wait})", this)
+        log.info("click(${pageInstance},${wait})", this)
         click()
         browser.page(pageInstance)
         def at = false
@@ -567,7 +567,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator click(List potentialPages, Wait wait = null) {
-        log.info("*** click(${potentialPages},${wait})", this)
+        log.info("click(${potentialPages},${wait})", this)
         click()
         def pageSwitchingAction = {
             browser.page(*potentialPages)
@@ -594,25 +594,25 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator first() {
-        log.info('*** first()', this)
+        log.info('first()', this)
         navigatorFor(Collections.singleton(firstElement()))
     }
 
     @Override
     Navigator last() {
-        log.info('*** last()', this)
+        log.info('last()', this)
         navigatorFor(Collections.singleton(lastElement()))
     }
 
     @Override
     Navigator tail() {
-        log.info('*** tail()', this)
+        log.info('tail()', this)
         navigatorFor contextElements.tail()
     }
 
     @Override
     Navigator verifyNotEmpty() {
-        log.info('*** verifyNotEmpty()', this)
+        log.info('verifyNotEmpty()', this)
         this
     }
 
@@ -642,7 +642,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator unique() {
-        log.info('*** unique()', contextElements)
+        log.info('unique()', contextElements)
         new NonEmptyNavigator(browser, contextElements.unique(false))
     }
 

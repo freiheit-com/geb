@@ -212,75 +212,75 @@ abstract class AbstractNavigator implements Navigator {
 
     @Override
     Navigator filter(Map<String, Object> predicates, String selector) {
-        log.info("*** filter(${predicates},${selector.toString()})", this)
+        log.info("filter(${predicates},${selector.toString()})", this)
         filter(selector).filter(predicates)
     }
 
     Navigator has(String selector) {
-        log.info("*** has(${selector.toString()})", this)
+        log.info("has(${selector.toString()})", this)
         findAll { Navigator it ->
             !it.find(selector).empty
         }
     }
 
     Navigator has(Map<String, Object> predicates) {
-        log.info("*** has(${predicates})", this)
+        log.info("has(${predicates})", this)
         findAll { Navigator it ->
             !it.find(predicates).empty
         }
     }
 
     Navigator has(Map<String, Object> predicates, String selector) {
-        log.info("*** has(${predicates},${selector.toString()})", this)
+        log.info("has(${predicates},${selector.toString()})", this)
         findAll { Navigator it ->
             !it.find(predicates, selector).empty
         }
     }
 
     Navigator has(By bySelector) {
-        log.info("*** has(${bySelector})", this)
+        log.info("has(${bySelector})", this)
         findAll { Navigator it ->
             !it.find(bySelector).empty
         }
     }
 
     Navigator has(Map<String, Object> predicates, By bySelector) {
-        log.info("*** has(${predicates},${bySelector})", this)
+        log.info("has(${predicates},${bySelector})", this)
         findAll { Navigator it ->
             !it.find(predicates, bySelector).empty
         }
     }
 
     Navigator hasNot(String selector) {
-        log.info("*** hasNot(${selector.toString()})", this)
+        log.info("hasNot(${selector.toString()})", this)
         findAll { Navigator it ->
             it.find(selector).empty
         }
     }
 
     Navigator hasNot(Map<String, Object> predicates) {
-        log.info("*** hasNot(${predicates})", this)
+        log.info("hasNot(${predicates})", this)
         findAll { Navigator it ->
             it.find(predicates).empty
         }
     }
 
     Navigator hasNot(Map<String, Object> predicates, String selector) {
-        log.info("*** hasNot(${predicates},${selector.toString()})", this)
+        log.info("hasNot(${predicates},${selector.toString()})", this)
         findAll { Navigator it ->
             it.find(predicates, selector).empty
         }
     }
 
     Navigator hasNot(By bySelector) {
-        log.info("*** hasNot(${bySelector})", this)
+        log.info("hasNot(${bySelector})", this)
         findAll { Navigator it ->
             it.find(bySelector).empty
         }
     }
 
     Navigator hasNot(Map<String, Object> predicates, By bySelector) {
-        log.info("*** hasNot(${predicates},${bySelector})", this)
+        log.info("hasNot(${predicates},${bySelector})", this)
         findAll { Navigator it ->
             it.find(predicates, bySelector).empty
         }
@@ -291,22 +291,22 @@ abstract class AbstractNavigator implements Navigator {
     }
 
     Navigator add(String selector) {
-        log.info("*** add(${selector.toString()})", this)
+        log.info("add(${selector.toString()})", this)
         add(By.cssSelector(selector))
     }
 
     Navigator add(By bySelector) {
-        log.info("*** add(${bySelector})", this)
+        log.info("add(${bySelector})", this)
         add browser.driver.findElements(bySelector)
     }
 
     Navigator add(WebElement[] elements) {
-        log.info("*** add(${elements})", this)
+        log.info("add(${elements})", this)
         add Arrays.asList(elements)
     }
 
     Navigator add(Collection<WebElement> elements) {
-        log.info("*** add(${elements})", this)
+        log.info("add(${elements})", this)
         List<WebElement> result = []
         result.addAll allElements()
         result.addAll elements
@@ -318,17 +318,17 @@ abstract class AbstractNavigator implements Navigator {
     }
 
     String attr(String name) {
-        log.info("*** attr(${name.toString()})", this)
+        log.info("attr(${name.toString()})", this)
         getAttribute(name)
     }
 
     WebElement firstElement() {
-        log.info('*** firstElement()', this)
+        log.info('firstElement()', this)
         getElement(0)
     }
 
     WebElement lastElement() {
-        log.info('*** lastElement()', this)
+        log.info('lastElement()', this)
         getElement(-1)
     }
 
@@ -337,7 +337,7 @@ abstract class AbstractNavigator implements Navigator {
     }
 
     Navigator findAll(Closure predicate) {
-        log.info("*** findAll(${predicate})", this)
+        log.info("findAll(${predicate})", this)
         browser.navigatorFactory.createFromNavigators(super.findAll(predicate))
     }
 
@@ -347,31 +347,31 @@ abstract class AbstractNavigator implements Navigator {
 
     int getHeight() {
         WebElement firstElement = firstElement()
-        log.info('*** getHeight()', firstElement)
+        log.info('getHeight()', firstElement)
         firstElement?.size?.height ?: 0
     }
 
     int getWidth() {
         WebElement firstElement = firstElement()
-        log.info('*** getWidth()', firstElement)
+        log.info('getWidth()', firstElement)
         firstElement?.size?.width ?: 0
     }
 
     int getX() {
         WebElement firstElement = firstElement()
-        log.info('*** getX()', firstElement)
+        log.info('getX()', firstElement)
         firstElement?.location?.x ?: 0
     }
 
     int getY() {
         WebElement firstElement = firstElement()
-        log.info('*** getY()', firstElement)
+        log.info('getY()', firstElement)
         firstElement?.location?.y ?: 0
     }
 
     String css(String propertyName) {
         WebElement firstElement = firstElement()
-        log.info("*** css(${propertyName.toString()})", firstElement)
+        log.info("css(${propertyName.toString()})", firstElement)
         firstElement?.getCssValue(propertyName)
     }
 
