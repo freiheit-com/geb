@@ -353,7 +353,7 @@ class NonEmptyNavigator extends AbstractNavigator {
 
     @Override
     Navigator closest(Map<String, Object> attributes = [:], String selector) {
-        log.info("closest(${attributes},${selector})", collectParents)
+        log.info("closest(${attributes},${selector})")
         navigatorFor collectParents {
             it.reverse().find { CssSelector.matches(it, selector) && matches(it, attributes) }
         }
