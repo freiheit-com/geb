@@ -15,11 +15,14 @@
  */
 package geb.waiting
 
+import groovy.util.logging.Slf4j
+
 /**
  * Represents a particular configuration of waiting, but does not encompass what is to be waited on.
  * <p>
  * Generally not used by user code, but used internally by {@link geb.Configuration} and {@link geb.waiting.WaitingSupport}.
  */
+@Slf4j
 class Wait {
 
     /**
@@ -113,6 +116,7 @@ class Wait {
         def pass
         def thrown = null
 
+        log.info "enter waitFor loop."
         try {
             pass = block()
         } catch (Throwable e) {
@@ -122,6 +126,7 @@ class Wait {
 
         def timedOut = new Date() > stopAt
         while (!pass && !timedOut) {
+            log.info "retry within loop."
             sleepForRetryInterval()
             try {
                 pass = block()
@@ -138,6 +143,7 @@ class Wait {
             throw new WaitTimeoutException(this, thrown, pass)
         }
 
+        log.info "exit waitFor loop."
         pass as T
     }
 
